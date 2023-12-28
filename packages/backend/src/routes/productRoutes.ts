@@ -1,11 +1,10 @@
 import { Router } from 'express';
+import { getProduct } from '../controllers/productController';
 
-const productRouter = Router();
+export const productRoutes = (router: Router): void => {
+  const productRouter = Router();
 
-productRouter.get('/', (req, res) => {
-  res.send('Product Route');
-});
+  productRouter.get('/', getProduct);
 
-export const productRoutes = (router: Router) => {
   router.use('/product', productRouter);
 };
