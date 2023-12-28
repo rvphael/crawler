@@ -1,7 +1,7 @@
 export const drogasilSelectors = {
-  name: 'seletor-css-para-nome',
-  barcode: 'seletor-css-para-codigo-de-barras',
-  brand: 'seletor-css-para-marca',
-  image: 'seletor-css-para-imagem',
-  price: 'seletor-css-para-preço',
+  name: 'h1[data-qa="seo-product_name-h1validator"]',
+  barcode: 'tr th:contains("EAN") + td > div',
+  brand: 'li.brand',
+  image: 'img.small-img',
+  price: 'div[data-qa="price_final_item"]',
 };

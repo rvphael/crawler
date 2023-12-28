@@ -22,6 +22,10 @@ const Product = connection.define('Product', {
     type: DataTypes.FLOAT,
     allowNull: false
   },
+  url: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 }, {
   tableName: 'products'
 });

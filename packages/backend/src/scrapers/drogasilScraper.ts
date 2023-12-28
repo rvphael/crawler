@@ -8,11 +8,14 @@ export const drogasilScraper: IScraper = {
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
+    const rawPrice = $(drogasilSelectors.price).text();
+    const formattedPrice = rawPrice.replace('R$', '').replace(',', '.');
+
     const name = $(drogasilSelectors.name).text();
     const barcode = $(drogasilSelectors.barcode).text();
     const brand = $(drogasilSelectors.brand).text();
     const image = $(drogasilSelectors.image).attr('src');
-    const price = parseFloat($(drogasilSelectors.price).text());
+    const price = parseFloat(formattedPrice);
 
     return { name, barcode, brand, image, price };
   }
