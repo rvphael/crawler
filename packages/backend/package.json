@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "tsc && shx mkdir -p dist/config && shx cp src/config/config.js dist/config/",
     "prod": "npm run build && node dist/server.js",
     "test": "jest --watchAll --runInBand --detectOpenHandles --forceExit --verbose"
   },
@@ -28,6 +28,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.5",
     "@types/sequelize": "^4.28.19",
+    "shx": "^0.3.4",
     "supertest": "^6.3.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
