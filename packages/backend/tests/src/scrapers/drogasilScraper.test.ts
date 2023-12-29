@@ -31,4 +31,31 @@ describe('drogasilScraper', () => {
       price: 19.99,
     });
   });
+
+  it('should handle errors during scraping', async () => {
+    (axios.get as jest.Mock).mockRejectedValue(new Error('Network error'));
+
+    const url = 'http://example.com/product';
+
+    await expect(drogasilScraper.scrapeProductData(url)).rejects.toThrow(
+      'Failed to scrape product data: Network error'
+    );
+  });
+
+  it('should handle missing or invalid data', async () => {
+    const mockHtml = `
+      <html>
+        <body>
+          <div data-qa="price_final_item">Invalid Price</div>
+        </body>
+      </html>
+    `;
+    (axios.get as jest.Mock).mockResolvedValue({ data: mockHtml });
+
+    const url = 'http://example.com/product';
+
+    await expect(drogasilScraper.scrapeProductData(url)).rejects.toThrow(
+      'Failed to scrape product data. Missing or invalid data.'
+    );
+  });
 });
