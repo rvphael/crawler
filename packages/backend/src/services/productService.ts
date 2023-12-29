@@ -1,12 +1,12 @@
-import Product from '../models/productModel';
+import * as productRepository from '../repositories/productRepository';
 import { IScraper } from '../scrapers/interfaces/IScraper';
 
 export const findOrCreateProduct = async (url: string, scraper: IScraper) => {
-  let product = await Product.findOne({ where: { url } });
+  let product = await productRepository.findProductByUrl(url);
 
   if (!product) {
     const scrapedData = await scraper.scrapeProductData(url);
-    product = await Product.create({ ...scrapedData, url });
+    product = await productRepository.createProduct({ ...scrapedData, url });
   }
 
   return product;
