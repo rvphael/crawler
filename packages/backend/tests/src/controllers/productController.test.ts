@@ -46,4 +46,27 @@ describe('getProduct', () => {
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ message: errorMessage });
   });
+
+  it('should return 404 if product not found', async () => {
+    (getScraper as jest.Mock).mockReturnValue({ scrapeProductData: jest.fn() });
+    (findOrCreateProduct as jest.Mock).mockResolvedValue(null);
+
+    await getProduct(req as Request, res as Response);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Produto não encontrado' });
+  });
+
+  it('should return 404 for external site errors', async () => {
+    const externalError: any = new Error('Produto não encontrado no site externo');
+    externalError.response = { status: 404 };
+
+    (getScraper as jest.Mock).mockReturnValue({ scrapeProductData: jest.fn() });
+    (findOrCreateProduct as jest.Mock).mockRejectedValue(externalError);
+
+    await getProduct(req as Request, res as Response);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Produto não encontrado no site externo' });
+  });
 });
