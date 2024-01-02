@@ -1,7 +1,7 @@
 export interface Product {
-  imageUrl: string;
+  image: string;
   name: string;
-  barCode: string;
+  barcode: string;
   brand: string;
   price: string;
 }
