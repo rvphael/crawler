@@ -4,6 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^@backend/(.*)$': '<rootDir>/src/$1',
+    'uuid': require.resolve('uuid')
   },
   collectCoverage: true,
   collectCoverageFrom: [
