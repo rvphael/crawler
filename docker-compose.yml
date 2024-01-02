@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  app:
+  backend:
     build:
       context: .
       dockerfile: packages/backend/Dockerfile
@@ -13,6 +13,15 @@ services:
       DB_DATABASE: ${DB_DATABASE}
     depends_on:
       - db
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: packages/frontend/Dockerfile
+    depends_on:
+      - backend
     ports:
       - "3000:3000"
 
