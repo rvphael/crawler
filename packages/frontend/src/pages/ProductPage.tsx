@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components/organisms/Header';
 import Footer from '../components/organisms/Footer';
 import ProductDetail from '../components/molecules/ProductDetail';
-import ProductImage from '../components/atoms/Image';
 import { fetchProductDetails } from '../utils/api';
 import { Product } from '../types/Product';
+import { Box, Typography } from '@mui/material';
 
 const ProductPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -22,36 +22,40 @@ const ProductPage: React.FC = () => {
           if (data) {
             setProduct(data);
           } else {
-            navigate('/product-not-found');
+            setError("Produto não encontrado");
+            navigate('/product-not-found', { state: { error: "Produto não encontrado" } });
           }
         })
         .catch(err => {
           console.error('Failed to fetch product details:', err);
-          navigate('/product-not-found');
+          setError(err.message || "Erro ao buscar detalhes do produto");
+          navigate('/product-not-found', { state: { error: err.message || "Erro ao buscar detalhes do produto" } });
         });
     }
   }, [search, navigate]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <Typography>Error: {error}</Typography>;
   }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <Typography>Carregando...</Typography>;
   }
 
   return (
-    <div>
+    <Box display="flex" flexDirection="column" minHeight="100vh" bgcolor="black">
       <Header />
-      <ProductImage src={product.imageUrl} alt={product.name} />
-      <ProductDetail
-        name={product.name}
-        barCode={product.barCode}
-        brand={product.brand}
-        price={product.price}
-      />
+      <Box flex={1} display="flex" justifyContent="center" alignItems="center" padding="2rem">
+        <ProductDetail
+          name={product.name}
+          barCode={product.barcode}
+          brand={product.brand}
+          price={product.price.toString()}
+          imageUrl={product.image}
+        />
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 };
 
