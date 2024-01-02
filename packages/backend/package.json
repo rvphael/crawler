@@ -7,7 +7,7 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc && shx mkdir -p dist/config && shx cp src/config/config.js dist/config/",
-    "test": "jest",
+    "test": "jest"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
