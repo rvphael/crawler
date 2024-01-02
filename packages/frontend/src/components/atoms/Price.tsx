@@ -6,7 +6,7 @@ interface PriceProps {
 }
 
 const Price: React.FC<PriceProps> = ({ value }) => (
-  <Typography variant="subtitle1">{value}</Typography>
+  <Typography variant="subtitle1" color="white">{value}</Typography>
 );
 
 export default Price;
