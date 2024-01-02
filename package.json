@@ -7,6 +7,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "test:backend": "yarn workspace @crawler/backend test"
+    "test:backend": "yarn workspace @crawler/backend test",
+    "test:frontend": "yarn workspace @crawler/frontend test"
   }
 }

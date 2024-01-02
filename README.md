@@ -41,6 +41,9 @@ Um monorepo que inclui uma aplicação backend para scraping de dados e um front
 ### Backend
 - Na raiz do projeto, execute `yarn workspace @crawler/backend test` para rodar os testes unitários do backend.
 
+### Frontend
+- Na raiz do projeto, execute `yarn workspace @crawler/frontend test` para rodar os testes unitários do frontend.
+
 ## Documentação da API
 ### Visão Geral
 Esta API fornece informações sobre produtos coletados de um site externo (Drogasil) através de um processo de crawling. Ela foi desenvolvida como parte do teste técnico da Pill.
