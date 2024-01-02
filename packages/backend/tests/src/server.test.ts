@@ -7,7 +7,7 @@ describe('server', () => {
     const app = require('../../src/app');
     require('../../src/server');
 
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 4000;
 
     expect(app.listen).toHaveBeenCalledWith(PORT, expect.any(Function));
   });
