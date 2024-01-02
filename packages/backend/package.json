@@ -7,8 +7,7 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc && shx mkdir -p dist/config && shx cp src/config/config.js dist/config/",
-    "test": "jest --watchAll --runInBand --detectOpenHandles --forceExit --verbose",
-    "setup_database": "ts-node src/utils/setup_database.ts"
+    "test": "jest",
   },
   "dependencies": {
     "@types/cors": "^2.8.17",

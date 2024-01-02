@@ -2,8 +2,6 @@
 
 Este projeto é uma solução para o teste técnico da Pill, consistindo em um crawler que consulta dados de produtos do site da Drogasil e disponibiliza esses dados através de uma API. Uma interface frontend também é fornecida para mostrar esses dados.
 
-Um monorepo que inclui uma aplicação backend para scraping de dados e um frontend para visualização desses dados. O backend é construído com Node.js e o frontend com React.
-
 ## Requisitos
 
 - Node >= v16.16.0
@@ -14,6 +12,11 @@ Um monorepo que inclui uma aplicação backend para scraping de dados e um front
 - MySQL >= v8.0.25
 
 ## Configuração e Execução
+
+Antes de iniciar a aplicação, é necessário configurar as variáveis de ambiente:
+
+1. Renomeie o arquivo `.env_example` para `.env`.
+2. Preencha as variáveis de ambiente no arquivo `.env` com os valores apropriados.
 
 ### Rodar Localmente sem Docker
 
