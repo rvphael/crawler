@@ -1,14 +1,11 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import { Box } from '@mui/material';
 import Logo from '../atoms/Logo';
 
 const Header: React.FC = () => (
-  <AppBar position="static">
-    <Toolbar>
-      <Logo />
-    </Toolbar>
-  </AppBar>
+  <Box bgcolor="black" border="1px solid white" padding="1rem" margin="2rem">
+    <Logo />
+  </Box>
 );
 
 export default Header;
