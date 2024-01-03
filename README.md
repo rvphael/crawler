@@ -47,63 +47,18 @@ Antes de iniciar a aplicação, é necessário configurar as variáveis de ambie
 ### Frontend
 - Na raiz do projeto, execute `yarn workspace @crawler/frontend test` para rodar os testes unitários do frontend.
 
-## Documentação da API
-### Visão Geral
-Esta API fornece informações sobre produtos coletados de um site externo (Drogasil) através de um processo de crawling. Ela foi desenvolvida como parte do teste técnico da Pill.
+## Documentação da API com Swagger
 
-### Base URL
-`http://localhost:4000/api`
+A documentação completa da API está disponível através do Swagger UI.
 
-## Endpoint: Consulta de Dados de Produto
+Para acessar a documentação, inicie o servidor e visite `http://localhost:4000/api-docs` no seu navegador.
 
-### URL
+A documentação do Swagger oferece uma visão detalhada de todos os endpoints da API, incluindo os parâmetros esperados, os formatos de resposta e os códigos de status.
 
-`GET /api/product`
+### Exemplo de Uso da API
 
-### Descrição
+Para um exemplo rápido de uso da API, você pode acessar:
 
-Este endpoint realiza o crawling de informações de produto de um URL específico da Drogasil. Retorna os detalhes do produto se encontrado.
+`[GET] http://localhost:4000/api/product?url=https://www.drogasil.com.br/neosaldina-30-drageas.html`
 
-### Parâmetros
-
-- **Query**:
-  - `url` (string): URL do produto no site da Drogasil.
-
-### Respostas
-
-#### 200 OK
-
-- Retornado quando o produto é encontrado com sucesso.
-- **Conteúdo da Resposta**:
-  ```json
-  {
-    "name": "Nome do Produto",
-    "barcode": "Código de Barras do Produto",
-    "brand": "Marca do Produto",
-    "image": "URL da Imagem do Produto",
-    "price": "Preço do Produto"
-  }
-  ```
-
-#### 404 Not Found
-
-- Retornado quando a URL do produto não é encontrada.
-- **Conteúdo da Resposta**:
-  ```json
-  {
-    "message": "Produto não encontrado."
-  }
-  ```
-
-- Retornado quando o produto não é encontrado.
-- **Conteúdo da Resposta**:
-  ```json
-  {
-    "message": "Produto não encontrado no site externo"
-  }
-  ```
-
-#### Exemplo de Uso
-```
-GET http://localhost:4000/api/product?url=https://www.drogasil.com.br/neosaldina-30-drageas.html
-```
+Este exemplo demonstra como consultar dados de um produto específico do site da Drogasil.
