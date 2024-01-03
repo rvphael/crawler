@@ -1,5 +1,7 @@
 # Crawler
 
+[![Node.js CI](https://github.com/rvphael/crawler/actions/workflows/node.js.yml/badge.svg)](https://github.com/rvphael/crawler/actions/workflows/node.js.yml)
+
 Este projeto é uma solução para o teste técnico da Pill, consistindo em um crawler que consulta dados de produtos do site da Drogasil e disponibiliza esses dados através de uma API. Uma interface frontend também é fornecida para mostrar esses dados.
 
 ## Requisitos para executar sem Docker
