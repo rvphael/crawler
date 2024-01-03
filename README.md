@@ -2,14 +2,17 @@
 
 Este projeto é uma solução para o teste técnico da Pill, consistindo em um crawler que consulta dados de produtos do site da Drogasil e disponibiliza esses dados através de uma API. Uma interface frontend também é fornecida para mostrar esses dados.
 
-## Requisitos
+## Requisitos para executar sem Docker
 
 - Node >= v16.16.0
 - Yarn >= v1.22.21
 - NPX >= v8.11.0
+- MySQL >= v8.0.25
+
+## Requisitos para executar com Docker
+
 - Docker >= v24.0.7
 - Docker Compose >= v2.10.0
-- MySQL >= v8.0.25
 
 ## Configuração e Execução
 
