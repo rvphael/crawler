@@ -3,21 +3,41 @@ import { drogasilScraper } from '../../../src/scrapers/drogasilScraper';
 
 jest.mock('axios');
 
+const mockedAxiosGet = axios.get as jest.Mock;
+
 describe('drogasilScraper', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('should scrape product data from a given URL', async () => {
+    const mockJsonLd = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Test Product",
+      "image": "http://example.com/image.jpg",
+      "gtin13": "123456789",
+      "brand": {
+        "@type": "Brand",
+        "name": "Test Brand"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "BRL",
+        "price": "19.99"
+      }
+    };
+
     const mockHtml = `
       <html>
         <body>
-          <h1 data-qa="seo-product_name-h1validator">Test Product</h1>
-          <table>
-            <tr><th>EAN</th><td><div>123456789</div></td></tr>
-          </table>
-          <li class="brand">Test Brand</li>
-          <img class="small-img" src="http://example.com/image.jpg" />
-          <div data-qa="price_final_item">R$19,99</div>
+          <script type="application/ld+json">
+            ${JSON.stringify(mockJsonLd)}
+          </script>
         </body>
       </html>
     `;
+
     (axios.get as jest.Mock).mockResolvedValue({ data: mockHtml });
 
     const url = 'http://example.com/product';
@@ -46,10 +66,16 @@ describe('drogasilScraper', () => {
     const mockHtml = `
       <html>
         <body>
-          <div data-qa="price_final_item">Invalid Price</div>
+          <script type="application/ld+json">
+            {
+              "@context": "https://schema.org/",
+              "@type": "Product"
+            }
+          </script>
         </body>
       </html>
     `;
+
     (axios.get as jest.Mock).mockResolvedValue({ data: mockHtml });
 
     const url = 'http://example.com/product';
