@@ -5,6 +5,7 @@ import Footer from '../components/organisms/Footer';
 import ProductDetail from '../components/molecules/ProductDetail';
 import { fetchProductDetails } from '../utils/api';
 import { Product } from '../types/Product';
+import { ErrorResponse } from '../types/ErrorResponse';
 import { Box, Typography } from '@mui/material';
 
 const ProductPage: React.FC = () => {
@@ -27,9 +28,10 @@ const ProductPage: React.FC = () => {
           }
         })
         .catch(err => {
-          console.error('Failed to fetch product details:', err);
-          setError(err.message || "Erro ao buscar detalhes do produto");
-          navigate('/product-not-found', { state: { error: err.message || "Erro ao buscar detalhes do produto" } });
+          const typedError = err as ErrorResponse;
+          const errorMessage = typedError.response?.data?.message || typedError.message || "Erro ao buscar detalhes do produto";
+          setError(errorMessage);
+          navigate('/product-not-found', { state: { error: errorMessage } });
         });
     }
   }, [search, navigate]);
