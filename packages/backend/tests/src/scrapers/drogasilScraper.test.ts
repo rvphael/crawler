@@ -58,7 +58,7 @@ describe('drogasilScraper', () => {
     const url = 'http://example.com/product';
 
     await expect(drogasilScraper.scrapeProductData(url)).rejects.toThrow(
-      'Failed to scrape product data: Network error'
+      'Produto não encontrado'
     );
   });
 
@@ -81,7 +81,7 @@ describe('drogasilScraper', () => {
     const url = 'http://example.com/product';
 
     await expect(drogasilScraper.scrapeProductData(url)).rejects.toThrow(
-      'Failed to scrape product data. Missing or invalid data.'
+      'Produto não encontrado'
     );
   });
 });

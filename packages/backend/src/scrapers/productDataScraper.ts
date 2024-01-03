@@ -18,11 +18,11 @@ export const scrapeProductData = async (url: string): Promise<ScrapedProductData
     const price = jsonData.offers?.price ? parseFloat(jsonData.offers.price) : null;
 
     if (!name || !barcode || !brand || !image || !price) {
-      throw new Error('Failed to scrape product data. Missing or invalid data.');
+      throw new Error('Produto não encontrado');
     }
 
     return { name, barcode, brand, image, price };
   } catch (error: any) {
-    throw new Error(`Failed to scrape product data: ${error.message}`);
+    throw new Error('Produto não encontrado');
   }
 }

@@ -54,6 +54,6 @@ describe('scrapeProductData', () => {
 
     const url = 'http://example.com/product';
 
-    await expect(scrapeProductData(url)).rejects.toThrow('Failed to scrape product data. Missing or invalid data.');
+    await expect(scrapeProductData(url)).rejects.toThrow('Produto não encontrado');
   });
 });
